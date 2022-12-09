@@ -1,4 +1,35 @@
 class UsersController < ApplicationController
+  def new_registration_form
+    render({ :template => "users/signup_form" })
+  end
+
+  def sign_out
+    reset_session
+    redirect_to("/", notice: "See ya later!")
+  end
+
+  def sign_in
+    render({ :template => "users/signin_form" })
+  end
+
+  def authenticate
+    the_user = params.fetch("input_username")
+    the_password = params.fetch("input_password")
+
+    lookup_user = User.where(username: the_user).at(0)
+
+    if lookup_user == nil
+      redirect_to("/user_sign_in", alert: "No one by that name 'round these parts")
+    else
+      if lookup_user.authenticate(the_password)
+        session.store(:user_id, lookup_user.id)
+        redirect_to("/", notice: "Welcome back #{lookup_user.username}!")
+      else
+        redirect_to("/user_sign_in", alert: "Password incorrect")
+      end
+    end
+  end
+
   def index
     @users = User.all.order({ :username => :asc })
 
@@ -12,10 +43,6 @@ class UsersController < ApplicationController
     render({ :template => "users/show.html.erb" })
   end
 
-  def new_registration_form
-    render({ :template => "users/signup_form" })
-  end
-
   def create
     user = User.new
 
@@ -26,6 +53,7 @@ class UsersController < ApplicationController
     save_status = user.save
 
     if save_status == true
+      session.store(:user_id, user.id)
       redirect_to("/users/#{user.username}", { notice: "Welcome " + user.username + "!" })
     else
       redirect_to("/user_sign_up", alert: user.errors.full_messages.to_sentence)
