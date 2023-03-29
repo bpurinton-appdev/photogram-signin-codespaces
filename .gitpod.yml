@@ -1,4 +1,4 @@
-image: patrickmckernin/photogram-signin-2022-spring
+image: bpurinton/pg-signin-test
 
 tasks:
   - before: |
