@@ -32,10 +32,10 @@
   "html.format.templating": true,
   "terminal.integrated.altClickMovesCursor": true,
   "[erb]":  {
-		"editor.formatOnSave": true
+		"editor.formatOnSave": false
   },
   "[ruby]":  {
-		"editor.formatOnSave": true
+		"editor.formatOnSave": false
   },
   "vscode-erb-beautify.keepBlankLines": 1,
   "ruby.intellisense": false,
