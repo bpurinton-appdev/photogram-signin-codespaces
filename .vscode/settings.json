@@ -37,6 +37,7 @@
   "[ruby]":  {
 		"editor.formatOnSave": false
   },
+  "terminal.integrated.defaultProfile.linux": "bash",
   "vscode-erb-beautify.keepBlankLines": 1,
   "ruby.intellisense": false,
   "gitpod.openInStable.neverPrompt": true,
