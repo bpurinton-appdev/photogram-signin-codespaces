@@ -15,7 +15,7 @@ Rails.application.configure do
     config.web_console.permissions = whitelisted_ips
     config.web_console.whiny_requests = false
 
-    config.web_console.whitelisted_ips = '0.0.0.0/0.0.0.0'
+    config.web_console.allowed_ips = '0.0.0.0/0.0.0.0'
     BetterErrors::Middleware.allow_ip! '0.0.0.0/0.0.0.0'
 
     console do
